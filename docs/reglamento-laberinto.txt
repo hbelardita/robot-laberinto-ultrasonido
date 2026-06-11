@@ -1,0 +1,202 @@
+Cada competidor deberá leer y respetar tanto el Reglamento General de la
+competencia como el Reglamento de su categoría. Las sanciones establecidas en
+ambos reglamentos serán aplicadas según corresponda al participar, se asume la
+total aceptación de ambas normativas.
+
+1. DESCRIPCIÓN GENERAL
+1.1​ Objetivo
+El objetivo de la modalidad “Laberinto” es encontrar la salida de un laberinto (Ver Área de
+Competencia) en el menor tiempo posible, dentro de un tiempo máximo establecido por el
+Jurado previo al inicio de la Competencia.
+1.2​ Subcategorías en “Laberinto”
+1.2.1​ La categoría se subdivide en 2 grupos: Amateur y Pro, dándole la oportunidad de
+elegir a los equipos participantes en cual competir, con ciertas diferencias a tener en cuenta:
+Amateur: La categoría amateur prioriza la participación de robots hechos a partir de
+un kit educativo y similares, cualquier placa de índole competitivo y/o con mejoras
+sustanciales a un Arduino UNO serán tomados como PRO (entendiéndose también como
+placa competitiva las PCB de elaboración propia, las comerciales y las de uso industrial). Se
+podrá utilizar cualquier tipo de batería o pack mientras no superen los 13V en total y se
+prohíbe el uso de cualquier elevador o regulador buck converter, step down o step up.
+Pro: Se podrá utilizar cualquier tipo de batería o pack, en esta categoría se permiten
+el uso de placas comerciales, de competencia, DIY y similares que presentan una habilidad
+de competición mayor a la categoría Amateur.
+AMATEUR
+
+✔️
+
+AMATEUR
+
+❌
+
+Arduino, ESP y similares educativas
+
+Raspberry Pi 3/4/5, etc.
+Placas comerciales o de elaboración
+propia que integran controladores de
+índole competitivo profesional (Esto
+incluye a las que integran con un socket a
+una placa arduino o similar como
+procesador).
+
+Driver L298N, Shield L293D, A4988,TB6612
+
+BTS7960, Shield Monster VNH2SP30,
+etc.
+Placas comerciales o de elaboración
+propia que integran controladores.
+(JSumo, entre otras)
+
+Motor DC Amarillos (Engranajes de Plástico)
+
+Motores Dc azules, TITAN, AP&S,
+IGNIS,Maxon, JSumo, Motores con caja
+reductora metálica etc.
+
+Sensores FC-51, HC-CR04, TCRT5000
+
+Sensores Sharp, QTR-8A, JS40F, Mz80,
+Omron E3Z-D82, MR45
+
+Cualquier tipo de batería
+
+-
+
+Se recomienda el encendido inalambrico
+
+-
+
+1.2.2​ Cualquier robot que al momento de homologar presente componentes que excedan
+los límites establecidos para la categoría amateur, será transferido a la categoría PRO.
+
+2. CARACTERÍSTICAS TÉCNICAS DEL ROBOT
+2.1​ Aspecto del Robot
+2.1.1​ Este podrá llevar el nombre del equipo o institución de procedencia en un lugar
+visible, así como colores que puedan identificarlos.
+2.1.2​ Quedan prohibidas las inscripciones o frases que puedan denotar rechazo a
+colectividades, consignas anticonstitucionales, etc.
+2.2​ Tipo de Robots
+2.2.1​ Si bien no existen limitaciones para las dimensiones del robot, se recomienda tener
+en cuenta las dimensiones del laberinto ya que, por ejemplo, un robot muy grande quizás no
+pueda girar adecuadamente en las esquinas (más allá que su tamaño sea menor al ancho
+del laberinto).
+2.2.2​ El robot no puede tener ningún tipo de material o elementos que puedan dañar el
+circuito.
+2.2.3​ Cada robot debe tener un interruptor (switch) que permita detenerlo inmediatamente.
+El interruptor debe ser visible y accesible quedando a criterio de los jueces el cumplimiento
+de este requerimiento.
+2.2.4​ Deben ser completamente autónomos, es decir, no podrán disponer de ningún tipo de
+conexión o comunicación con el exterior, sí está permitido que el robot transmita datos útiles
+para el análisis de su desempeño.
+
+2.2.5​ En caso de ser solicitado por el Jurado, el equipo deberá demostrar que el robot
+puede funcionar sin este enlace activado. Tampoco se podrá operar directamente sobre ellos
+una vez comenzada la prueba.
+2.2.6​ Los motores deberán ser alimentados exclusivamente mediante baterías (estándar o
+recargables), permitiendo el uso de múltiples unidades a lo largo de la competencia. El
+cambio de baterías está autorizado, siempre que esto no altere de forma significativa el peso
+o las dimensiones del robot. En caso de utilizar baterías recargables, cada equipo deberá
+proveer su propia fuente de carga y realizar el proceso únicamente cuando el robot no se
+encuentre en competencia.
+
+3. ÁREA DE COMPETENCIA
+3.1​ El área de Competencia consta de un conjunto de celdas de 25cm x 25cm (± 0,5cm). El piso
+es de madera es de color negro mate. Las paredes son blancas, de 15cm (± 0,5cm) de altura. La
+salida es una celda de piso blanco.
+3.2​ El diseño del laberinto consiste en paredes móviles, lo que permitirá plantear varias
+configuraciones de laberinto.
+
+4. HOMOLOGACIÓN
+4.1​ Para que los Robots puedan Homologar y competir deberán cumplir de forma categórica los
+siguientes puntos:
+4.1.1​ Verificación de encendido con switch.
+4.1.2 Verificación del estado del robot de manera que no comprometa a la pista de laberinto
+(tamaño, diseño, orden de cables, etc.).
+
+5. DESARROLLO DE LA COMPETENCIA
+5.1​ Definición y puntuación de la Competencia
+5.1.1​ Cada robot deberá completar dos configuraciones del laberinto dentro de un tiempo
+máximo determinado por el Jurado.
+5.1.2​ La competición se disputará en turnos de acuerdo al criterio del Jurado o por sorteo.
+5.1.3​ Habrá dos rondas por configuración y en cada una los jurados tomarán el tiempo,
+penalidades y menor recorrido en cada una de ellas. Solo se tomará en cuenta la mejor
+ronda para puntuar al robot.
+5.1.4​ Luego de que todos los robots participantes hayan completado la primera
+configuración, el Jurado informará de una pausa y determinará una segunda configuración.
+Luego de la pausa se realizarán las dos rondas correspondientes.
+5.1.5​ En caso de que el robot no puede resolver el recorrido (en cualquiera de ambas
+configuraciones), en el tiempo máximo establecido, el Jurado determinará:
+●​ Su posición al momento de finalizado el tiempo máximo
+●​ La distancia desde ese punto hasta la salida del laberinto, determinado por el
+camino más corto posible.
+5.1.6​ Al finalizar la segunda ronda de la segunda configuración, se dará por terminada la
+prueba y el Jurado determinará las posiciones finales del evento. Para esto, se sumarán
+ambas rondas (las mejores de cada configuración), obteniendo un tiempo promedio, una
+cantidad de penalidades (si las hubiera) y un recorrido restante (si lo hubiera). Luego, con
+estos datos, se tendrán en cuenta los siguientes criterios y en el siguiente orden:
+●​ Encontrar la salida
+●​ Menor tiempo de resolución promedio del laberinto sin penalidades.
+●​ Menor tiempo de resolución promedio con menor cantidad de penalidades
+promedio.
+●​ Menor recorrido restante promedio hasta la salida del laberinto sin
+penalidades.
+●​ Menor recorrido restante promedio hasta la salida del laberinto con menor
+cantidad de penalidades promedio.
+5.2​ Rutina de la Competencia
+5.2.1​ Antes del inicio los jurados pueden considerar un tiempo de prueba en un laberinto
+aparte o se determinará una sección cerrada del mismo para las pruebas con no más de 4
+celdas a disposición. El orden y tiempo de dichas pruebas lo determina el jurado.
+5.2.2​ Cada ronda contempla dos recorridos por robot participante. El primer robot tendrá un
+primer intento para realizar el recorrido, finalizado el tiempo máximo, el Jurado determinará
+
+el tiempo/posición final y llamará al segundo participante para continuar la competencia. Al
+finalizar el recorrido el último robot, comenzará el segundo recorrido del primer robot
+participante. Mientras se esté realizando el intento, ningún participante podrá retirar el robot
+hasta que termine su segundo recorrido.
+5.2.3​ Para comenzar, el representante del equipo situará el robot en la posición y
+orientación indicada por el Jurado para iniciar el intento y esperará la orden de inicio.
+Cuando el robot esté realizando el recorrido, nadie podrá ingresar al área de competencia
+sin la previa autorización del Jurado y sólo el representante del equipo lo podrá hacer,
+incluyendo los tiempos entre recorridos. El robot deberá alcanzar la salida y cuando lo haga,
+se tomará el tiempo.
+5.2.4​ Durante las rondas, el representante puede solicitar detener el robot y volver a
+comenzar el laberinto, recordando que no puede modificar su programa. En este caso, se le
+otorgará una penalización al robot y volverá a iniciar el recorrido desde el tiempo
+transcurrido al momento de detener el robot.
+5.2.5​ Cada robot dispondrá de un tiempo máximo determinado por el Jurado para realizar
+el recorrido. En caso de no terminar dentro de ese tiempo, se determinará la distancia hasta
+la salida. Esta distancia será el número de celdas que le hayan faltado recorrer hasta la
+salida.
+5.3​ Parada de la Ronda.
+La prueba se parará cuando:
+●​El Jurado lo decida en cualquier momento de la misma.
+●​Se desprenda alguna pieza de cualquiera de los robots participantes.
+●​Se desprenda una pieza del laberinto.
+●​Se produzca el ingreso sin autorización al área de competencia.
+●​El robot demora en realizar el recorrido del laberinto en un tiempo mayor al
+máximo definido.
+●​El representante lo solicite para comenzar nuevamente el recorrido.
+●​El robot permanece 15 segundos inmóvil en cualquier parte del recorrido.
+●​Un robot permanece 15 segundos empujando una pared del laberinto.
+
+6. PENALIDADES
+6.1​ Se penalizará y reiniciará el recorrido, el robot que:
+6.1.1​ Permanezca 15 segundos inmóvil en cualquier parte del laberinto.
+6.1.2​ Permanezca 15 segundos empujando una pared del laberinto.
+6.1.3​ Si el representante solicita el reinicio del recorrido.
+
+6.1.4​ Luego de una penalización, el participante dispondrá de 1 minuto para comenzar
+nuevamente el recorrido.
+6.2​ Perderá el recorrido el robot que:
+6.2.1​ Se le desprenda alguna pieza durante la misma.
+6.2.2​ Su representante o algún miembro del equipo ingrese al área de la competencia
+durante el desarrollo sin autorización del Jurado.
+6.2.3​ Cuando haya alcanzado las 3 penalidades.
+6.2.4​ Por no presentarse al momento que sea llamado.
+6.2.5​ Por provocar deliberadamente un desperfecto en el laberinto.
+6.3​ Revisión técnica durante las Rondas
+Si el Jurado lo cree conveniente podrá parar la ronda para solicitarle al participante que
+demuestre que su robot funciona correctamente. Si se demostrara que no cumple con las
+características mínimas de funcionamiento (activación de los motores, baterías no
+conectadas, etc.) serán penalizados con la pérdida de la ronda.
+
+
