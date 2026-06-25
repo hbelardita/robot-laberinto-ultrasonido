@@ -86,13 +86,72 @@ void setup() {
     // This also prevents false starts if the robot is still being placed
     delay(2000);
 
-    Serial.println(F("[RUN] Starting solver..."));
+    if (HARDWARE_TEST_MODE) {
+        Serial.println(F("\n=== TEST MODE ACTIVE ==="));
+        Serial.println(F("Send via Serial:"));
+        Serial.println(F("  w: Forward   s: Backward   a: Left   d: Right"));
+        Serial.println(F("  q: 90° Left  e: 90° Right  u: 180° U-Turn"));
+        Serial.println(F("  x: Stop Motors"));
+        Serial.println(F("  c: Scan Center   l: Scan Left   r: Scan Right"));
+        Serial.println(F("  i: Read IR Floor Sensor"));
+        Serial.println(F("========================\n"));
+    } else {
+        Serial.println(F("[RUN] Starting solver..."));
+    }
 }
 
 // ---------------------------------------------------------------------------
 // loop()
 // ---------------------------------------------------------------------------
 void loop() {
+    if (HARDWARE_TEST_MODE) {
+        if (Serial.available() > 0) {
+            char cmd = Serial.read();
+            switch (cmd) {
+                case 'w': Serial.println(F("Motor: FWD")); motor.forward(); break;
+                case 's': Serial.println(F("Motor: REV")); motor.backward(); break;
+                case 'a': Serial.println(F("Motor: LEFT")); motor.turnLeft(); break;
+                case 'd': Serial.println(F("Motor: RIGHT")); motor.turnRight(); break;
+                case 'q':
+                    Serial.println(F("Test: 90 L")); motor.turnLeft();
+                    delay(TURN_TIME_MS); motor.stop(); break;
+                case 'e':
+                    Serial.println(F("Test: 90 R")); motor.turnRight();
+                    delay(TURN_TIME_MS); motor.stop(); break;
+                case 'u':
+                    Serial.println(F("Test: 180 U-Turn"));
+                    motor.turnRight(); delay(TURN_TIME_MS); motor.stop(); delay(150);
+                    motor.turnRight(); delay(TURN_TIME_MS); motor.stop(); break;
+                case 'x': Serial.println(F("Motor: STOP")); motor.stop(); break;
+                case 'c':
+                    Serial.print(F("Scan CENTER: "));
+                    Serial.print(scanner.scanCenter()); Serial.println(F(" cm"));
+                    break;
+                case 'l':
+                    Serial.print(F("Scan LEFT: "));
+                    Serial.print(scanner.scanLeft()); Serial.println(F(" cm"));
+                    break;
+                case 'r':
+                    Serial.print(F("Scan RIGHT: "));
+                    Serial.print(scanner.scanRight()); Serial.println(F(" cm"));
+                    break;
+                case 'i':
+                    Serial.print(F("IR Sensor: "));
+                    Serial.println(digitalRead(PIN_IR_FLOOR) == LOW ? F("WHITE (0)") : F("BLACK (1)"));
+                    break;
+            }
+        }
+
+        // static unsigned long lastPrint = 0;
+        // if (millis() - lastPrint > 500) {
+        //     Serial.print(F("Dist Centro: "));
+        //     Serial.print(scanner.scanCenter());
+        //     Serial.println(F(" cm"));
+        //     lastPrint = millis();
+        // }
+        return;
+    }
+
     if (solver.isExitFound()) {
         // Exit has been found — blink rapidly to signal completion
         // Motors are already stopped inside handleExit()

@@ -13,18 +13,25 @@
 // =============================================================================
 
 // ---------------------------------------------------------------------------
+// Hardware Test / Debug Mode
+// Set to true to disable maze solver and enable Serial commands for testing:
+// w/a/s/d = move, x = stop, c/l/r = scan center/left/right, i = read IR
+// ---------------------------------------------------------------------------
+constexpr bool HARDWARE_TEST_MODE = false;
+
+// ---------------------------------------------------------------------------
 // Pin assignments — Arduino Uno
 // Keep PWM pins on hardware-PWM capable pins: 3,5,6,9,10,11
 // ---------------------------------------------------------------------------
 
 // L298N motor driver
 // Motor A = left wheel,  Motor B = right wheel
-constexpr uint8_t PIN_IN1  = 2;   // Motor A direction 1
-constexpr uint8_t PIN_IN2  = 3;   // Motor A direction 2  (also PWM-capable, but used as DIR)
-constexpr uint8_t PIN_IN3  = 4;   // Motor B direction 1
-constexpr uint8_t PIN_IN4  = 5;   // Motor B direction 2
-constexpr uint8_t PIN_ENA  = 9;   // Motor A enable — hardware PWM (Timer1)
-constexpr uint8_t PIN_ENB  = 10;  // Motor B enable — hardware PWM (Timer1)
+constexpr uint8_t PIN_IN1  = 4;   // Swapped (was 2)
+constexpr uint8_t PIN_IN2  = 10;  // Swapped (was 9)
+constexpr uint8_t PIN_IN3  = 2;   // Swapped (was 4)
+constexpr uint8_t PIN_IN4  = 9;   // Swapped (was 10)
+constexpr uint8_t PIN_ENA  = 5;   // Swapped (was 3)
+constexpr uint8_t PIN_ENB  = 3;   // Swapped (was 5)
 
 // SG90 servo — carries the HC-SR04
 constexpr uint8_t PIN_SERVO = 6;  // PWM-capable (Timer0) — Servo lib handles timing
@@ -45,7 +52,7 @@ constexpr uint8_t PIN_LED = 13;
 // Calibrate: 130 gives ~30% of theoretical max; safe for narrow corridors
 // ---------------------------------------------------------------------------
 constexpr uint8_t MOTOR_SPEED  = 130;  // Cruise speed — straight movement
-constexpr uint8_t TURN_SPEED   = 110;  // Turn speed — slightly lower for accuracy
+constexpr uint8_t TURN_SPEED   = 180;  // Turn speed — increased for more power
 
 // ---------------------------------------------------------------------------
 // Servo angles (SG90: 0°–180°)
@@ -87,7 +94,7 @@ constexpr uint8_t ADVANCE_TARGET_CM = 22;
 // Time for a 90° pivot turn at TURN_SPEED.
 // Calibration guide: run turnLeft/Right for N ms on flat surface, measure angle.
 // Typical range 450–650 ms depending on battery charge and floor friction.
-constexpr uint16_t TURN_TIME_MS = 550;
+constexpr uint16_t TURN_TIME_MS = 850;
 
 // Post-turn sensor verification tolerance (cm)
 // After a turn, re-scan center. Expected distance should change by at least this

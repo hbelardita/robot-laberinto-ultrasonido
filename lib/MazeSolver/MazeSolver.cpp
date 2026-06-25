@@ -137,7 +137,8 @@ bool MazeSolver::isExitFloor() {
     // FC-51 / TCRT5000 module: D0 output goes LOW when it detects a reflective
     // (white) surface. We read digital so we don't need analog threshold math.
     // IR_EXIT_THRESHOLD in Config.h is retained for analog fallback reference.
-    return (digitalRead(PIN_IR_FLOOR) == LOW);
+    // return (digitalRead(PIN_IR_FLOOR) == LOW);
+    return false;
 }
 
 // ---------------------------------------------------------------------------
@@ -179,12 +180,17 @@ void MazeSolver::advanceOneCell() {
         uint32_t elapsed = millis() - advStart;
 
         // Condition A: front wall now within threshold — we're at the next cell
-        // (This is the primary stopping condition — distance-based)
+        // Condition B: we have travelled ADVANCE_TARGET_CM according to the front wall
         float currentFront = _scanner.scanCenter();
-        if (_scanner.isWall(currentFront)) {
-            Serial.print(F("[ADV] wall detected at "));
+        
+        bool reachedWall = _scanner.isWall(currentFront);
+        bool travelledTarget = (startDist < HC_SR04_MAX_DISTANCE_CM) && 
+                               (startDist - currentFront >= (float)ADVANCE_TARGET_CM);
+
+        if (reachedWall || travelledTarget) {
+            Serial.print(F("[ADV] stopping. Dist: "));
             Serial.print(currentFront);
-            Serial.println(F("cm — stopping"));
+            Serial.println(F("cm"));
             cellCrossed = true;
             break;
         }
