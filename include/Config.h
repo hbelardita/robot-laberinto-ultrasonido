@@ -55,6 +55,15 @@ constexpr uint8_t MOTOR_SPEED  = 130;  // Cruise speed — straight movement
 constexpr uint8_t TURN_SPEED   = 180;  // Turn speed — increased for more power
 
 // ---------------------------------------------------------------------------
+// Progressive braking — prevents wall collisions during advance
+// As the robot approaches a wall, speed decreases linearly from MOTOR_SPEED
+// to MOTOR_SPEED_SLOW. Below EMERGENCY_STOP_CM, immediate hard stop.
+// ---------------------------------------------------------------------------
+constexpr uint8_t MOTOR_SPEED_SLOW    = 80;   // Minimum speed during braking zone
+constexpr uint8_t BRAKE_START_CM      = 20;   // Start slowing down at this front distance
+constexpr uint8_t EMERGENCY_STOP_CM   = 8;    // Hard stop — too close to wall
+
+// ---------------------------------------------------------------------------
 // Servo angles (SG90: 0°–180°)
 // Physical mounting: servo horn forward, sensor facing front of robot
 //   160° → sensor points left of robot heading
@@ -85,7 +94,7 @@ constexpr uint8_t CELL_WIDTH_CM = 25;
 // Strategy: measure front wall before moving. Drive forward until front wall
 // reading decreases by ≈ADVANCE_TARGET_CM or a new wall appears within threshold.
 // Set slightly less than CELL_WIDTH_CM to avoid bumping the far wall.
-constexpr uint8_t ADVANCE_TARGET_CM = 22;
+constexpr uint8_t ADVANCE_TARGET_CM = 18;
 
 // ---------------------------------------------------------------------------
 // Timing constants (ms) — calibrate on actual hardware
@@ -128,7 +137,7 @@ constexpr uint8_t HC_SR04_SAMPLES = 3;
 
 // Advance fallback timeout: if front wall never appears, stop after this many ms.
 // Calculated: ADVANCE_TARGET_CM / avg robot speed. Tune if robot overshoots.
-constexpr uint16_t ADVANCE_TIMEOUT_MS = 1500;
+constexpr uint16_t ADVANCE_TIMEOUT_MS = 1000;
 
 // Delay between consecutive HC-SR04 pulses to avoid echo contamination (ms)
 constexpr uint8_t HC_SR04_PULSE_GAP_MS = 30;

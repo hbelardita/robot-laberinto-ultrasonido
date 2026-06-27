@@ -179,12 +179,31 @@ void MazeSolver::advanceOneCell() {
 
         uint32_t elapsed = millis() - advStart;
 
-        // Condition A: front wall now within threshold — we're at the next cell
-        // Condition B: we have travelled ADVANCE_TARGET_CM according to the front wall
         float currentFront = _scanner.scanCenter();
-        
+
+        // --- Emergency hard stop: dangerously close to wall ---
+        if (currentFront > 0 && currentFront <= EMERGENCY_STOP_CM) {
+            Serial.print(F("[ADV] EMERGENCY stop at "));
+            Serial.print(currentFront);
+            Serial.println(F("cm"));
+            cellCrossed = true;
+            break;
+        }
+
+        // --- Progressive braking: reduce speed as we approach the wall ---
+        // Linear interpolation from MOTOR_SPEED (at BRAKE_START_CM)
+        // down to MOTOR_SPEED_SLOW (at EMERGENCY_STOP_CM).
+        if (currentFront > EMERGENCY_STOP_CM && currentFront <= BRAKE_START_CM) {
+            float range = (float)(BRAKE_START_CM - EMERGENCY_STOP_CM);
+            float ratio = (currentFront - EMERGENCY_STOP_CM) / range;
+            uint8_t speed = MOTOR_SPEED_SLOW +
+                            (uint8_t)(ratio * (float)(MOTOR_SPEED - MOTOR_SPEED_SLOW));
+            _motor.forward(speed);
+        }
+
+        // Normal stop conditions: wall threshold or distance target reached
         bool reachedWall = _scanner.isWall(currentFront);
-        bool travelledTarget = (startDist < HC_SR04_MAX_DISTANCE_CM) && 
+        bool travelledTarget = (startDist < HC_SR04_MAX_DISTANCE_CM) &&
                                (startDist - currentFront >= (float)ADVANCE_TARGET_CM);
 
         if (reachedWall || travelledTarget) {
@@ -195,16 +214,12 @@ void MazeSolver::advanceOneCell() {
             break;
         }
 
-        // Condition B: fallback timeout — no wall ever appeared (open far end)
-        // This handles the exit cell and very long corridors beyond sensor range
+        // Fallback timeout — no wall ever appeared (open corridor / last cell)
         if (elapsed >= ADVANCE_TIMEOUT_MS) {
             Serial.println(F("[ADV] timeout — assuming cell crossed"));
             cellCrossed = true;
             break;
         }
-
-        // Small yield — each loop iteration includes a sensor read (~60ms with
-        // median filter). This is fast enough for corridor-speed movement.
     }
 
     _motor.stop();
